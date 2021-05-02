@@ -1,10 +1,10 @@
-package fr.esgi.microservices;
+package fr.esgi.trading;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MicroservicesApplicationTests {
+class TradingApplicationTests {
 
     @Test
     void contextLoads() {
