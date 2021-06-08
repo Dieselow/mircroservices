@@ -75,7 +75,7 @@ services:
   trading:
     build: trading
     ports:
-    - "3001:3001"
+      - "3001:3001"
   postgres:
     container_name: postgres_container
     image: postgres
@@ -100,5 +100,5 @@ networks:
     driver: bridge
 volumes:
   prometheus-data: { }
-  postgres: {}
+  postgres: { }
   grafana-data: { }
