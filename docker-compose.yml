@@ -71,11 +71,17 @@ services:
     ports:
       - 5672:5672
       - 15672:15672
-
+######### My MICROSERVICES
   trading:
     build: trading
     ports:
       - "3001:3001"
+  users:
+    build: users
+    ports:
+      - "3002:3002"
+##########
+
   postgres:
     container_name: postgres_container
     image: postgres
