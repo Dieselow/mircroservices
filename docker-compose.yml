@@ -65,16 +65,12 @@ services:
     networks:
       - monitoring
     restart: always
-  zookeeper:
-    image: wurstmeister/zookeeper
-
-  kafka:
-    image: wurstmeister/kafka
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: micro-broker
     ports:
-      - "9092:9092"
-    environment:
-      KAFKA_ADVERTISED_HOST_NAME: localhost
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      - 5672:5672
+      - 15672:15672
 
   trading:
     build: trading
