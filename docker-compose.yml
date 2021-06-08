@@ -73,10 +73,16 @@ services:
       - 15672:15672
 ######### My MICROSERVICES
   trading:
+    depends_on:
+      - kibana
+      - rabbitmq
     build: trading
     ports:
       - "3001:3001"
   users:
+    depends_on:
+      - kibana
+      - rabbitmq
     build: users
     ports:
       - "3002:3002"
