@@ -1,0 +1,9 @@
+{
+  "service": {
+    "name": "trading",
+    "tags": [
+      "api"
+    ],
+    "port": 3001
+  }
+}

@@ -2,13 +2,13 @@ version: '3'
 
 services:
   consul:
-    image: consul:1.6.3
-    command: agent -server -ui -node=server1 -bootstrap-expect=1 -client=0.0.0.0
+    image: consul:latest
+    volumes:
+      - ./docker/consul/services:/services
     ports:
-      - "8500:8500"
-      - "8600:8600/udp"
-    networks:
-      - consul-net
+      - 8500:8500
+      - 8600:8600
+    command: "agent -server -bootstrap -ui -client=0.0.0.0 -config-dir /services/"
 
 
   elasticsearch:
@@ -116,8 +116,6 @@ services:
 
 
 networks:
-  consul-net:
-    driver: bridge
   postgres:
     driver: bridge
   monitoring:

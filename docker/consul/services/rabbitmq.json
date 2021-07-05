@@ -1,0 +1,9 @@
+{
+  "service": {
+    "name": "trading",
+    "tags": [
+      "message-broker"
+    ],
+    "port": 15672
+  }
+}
