@@ -1,4 +1,4 @@
-package com.example.users;
+package fr.esgi.users;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
