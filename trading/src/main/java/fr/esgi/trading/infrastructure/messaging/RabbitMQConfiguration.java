@@ -27,12 +27,12 @@ public class RabbitMQConfiguration {
 
     @Bean
     Queue queue() {
-        return new Queue(queue, true);
+        return new Queue("user.queue", true);
     }
 
     @Bean
     Exchange myExchange() {
-        return ExchangeBuilder.directExchange(exchange).durable(true).build();
+        return ExchangeBuilder.directExchange("user.registration").durable(true).build();
     }
 
     @Bean
@@ -40,7 +40,7 @@ public class RabbitMQConfiguration {
         return BindingBuilder
                 .bind(queue())
                 .to(myExchange())
-                .with(routingKey)
+                .with("user.registration.done")
                 .noargs();
     }
 
