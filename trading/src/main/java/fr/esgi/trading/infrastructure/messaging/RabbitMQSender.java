@@ -1,28 +1,22 @@
 package fr.esgi.trading.infrastructure.messaging;
 
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import fr.esgi.trading.infrastructure.messaging.keys.UserQueueKey;
+import net.minidev.json.JSONObject;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class RabbitMQSender {
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
-    private String exchange;
-    private String routingkey;
 
     @Autowired
-    public RabbitMQSender(RabbitTemplate rabbitTemplate) {
-        this.rabbitTemplate = rabbitTemplate;
-    }
+    private AmqpTemplate amqpTemplate;
 
-    public RabbitMQSender(String exchange, String routingkey) {
-        this.exchange = exchange;
-        this.routingkey = routingkey;
-    }
+    @Value("${spring.rabbitmq.exchange}")
+    public String exchange;
 
-
-    public void send(Object object) {
-        rabbitTemplate.convertAndSend(exchange, routingkey, object);
+    public void sendToUser(UserQueueKey routingKey, JSONObject body) {
+        amqpTemplate.convertAndSend(exchange, routingKey.toString(), body);
     }
 }

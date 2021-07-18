@@ -13,10 +13,19 @@ spring:
     password: guest
     port: 15672
     username: guest
-    exchange: user.exchange
-    companyExchange: company.exchange
-    queue: user.queue
-    routingkey: user.routingkey
+    exchange: direct-exchange
+    tradingQueue: tradingQueue
+    userQueue: userQueue
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    initialization-mode: always
+    platform: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+
 management:
   endpoints:
     web:
@@ -26,3 +35,6 @@ management:
 logging.level:
   org.springframework.cloud:
     consul: DEBUG
+
+
+

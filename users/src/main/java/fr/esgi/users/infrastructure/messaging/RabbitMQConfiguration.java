@@ -1,6 +1,7 @@
 package fr.esgi.users.infrastructure.messaging;
 
-import org.springframework.amqp.core.*;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -12,12 +13,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfiguration {
-    @Value("${spring.rabbitmq.queue}")
-    private String queue;
-    @Value("${spring.rabbitmq.exchange}")
-    private String exchange;
-    @Value("${spring.rabbitmq.routingkey}")
-    private String routingKey;
+
     @Value("${spring.rabbitmq.username}")
     private String username;
     @Value("${spring.rabbitmq.password}")
@@ -25,23 +21,27 @@ public class RabbitMQConfiguration {
     @Value("${spring.rabbitmq.host}")
     private String host;
 
+    @Value("${spring.rabbitmq.userQueue}")
+    private String userQueue;
+    @Value("${spring.rabbitmq.tradingQueue}")
+    private String tradingQueue;
+    @Value("${spring.rabbitmq.exchange}")
+    private String exchange;
+
+
     @Bean
-    Queue queue() {
-        return new Queue(queue, true);
+    Queue userQueue() {
+        return new Queue(userQueue, false);
     }
 
     @Bean
-    Exchange myExchange() {
-        return ExchangeBuilder.directExchange(exchange).durable(true).build();
+    Queue tradingQueue() {
+        return new Queue(tradingQueue, false);
     }
 
     @Bean
-    Binding binding() {
-        return BindingBuilder
-                .bind(queue())
-                .to(myExchange())
-                .with(routingKey)
-                .noargs();
+    DirectExchange exchange() {
+        return new DirectExchange(exchange);
     }
 
     @Bean
