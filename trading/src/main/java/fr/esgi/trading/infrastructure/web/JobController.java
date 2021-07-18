@@ -77,12 +77,18 @@ public class JobController {
 
     @PutMapping("{id}/finish")
     public ResponseEntity<Job> finishJob(@PathVariable int id, @RequestBody JobActionDTO dto){
+
         Optional<Job> jobDB = jobRepo.findById(id);
 
         if(!jobDB.isPresent()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "couldn't find job");
         }
+
         Job job = jobDB.get();
+
+        if(dto.getUserID() != job.getWorker()){
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "you can't finish a job you havn't started");
+        }
 
         job.setStatus(JobStatus.FINISHED);
 
