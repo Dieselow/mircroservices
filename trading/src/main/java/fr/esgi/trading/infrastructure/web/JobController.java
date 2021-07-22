@@ -1,5 +1,6 @@
 package fr.esgi.trading.infrastructure.web;
 
+import fr.esgi.logger.ESLogger;
 import fr.esgi.trading.domain.Job;
 import fr.esgi.trading.domain.JobRepository;
 import fr.esgi.trading.domain.JobStatus;
@@ -19,12 +20,14 @@ import java.util.Optional;
 public class JobController {
 
     private final JobRepository jobRepo;
+    private final ESLogger logger;
 
     @Autowired
     private RabbitMQSender rabbitMQSender;
 
-    JobController(JobRepository jobRepo){
+    JobController(JobRepository jobRepo, ESLogger logger){
         this.jobRepo = jobRepo;
+        this.logger = logger;
     }
 
     @GetMapping("{id}")
@@ -49,6 +52,8 @@ public class JobController {
         JSONObject body = new JSONObject();
         body.appendField("id", job.getCreator());
         rabbitMQSender.sendToUser(UserQueueKey.INCR_POSTED, body);
+        logger.log("created job: " + job.getTitle() + " " + job.getDescription());
+
 
         return new ResponseEntity<>(postDB, HttpStatus.CREATED);
     }
