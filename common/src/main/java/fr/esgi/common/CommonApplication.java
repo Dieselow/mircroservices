@@ -1,13 +1,13 @@
-package fr.esgi.eureka;
+package fr.esgi.common;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EurekaApplication {
+public class CommonApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(EurekaApplication.class, args);
+        SpringApplication.run(CommonApplication.class, args);
     }
 
 }

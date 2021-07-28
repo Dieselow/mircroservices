@@ -1,7 +1,6 @@
 package fr.esgi.gateway;
 
 
-
 import com.google.gson.Gson;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
@@ -29,7 +28,7 @@ public class JwtUtil {
     private Key key;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         this.key = Keys.hmacShaKeyFor(secret.getBytes());
     }
 
@@ -47,7 +46,7 @@ public class JwtUtil {
             JWT jwt = gson.fromJson(body, JWT.class);
 
             return jwt;
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "wrong jwt format");
         }
     }
