@@ -5,7 +5,7 @@ import fr.esgi.auth.domain.User;
 import fr.esgi.auth.infrastructure.messaging.RabbitMQSender;
 import fr.esgi.auth.infrastructure.web.dto.LoginDTO;
 import fr.esgi.auth.infrastructure.web.dto.LoginResponseDTO;
-import fr.esgi.common.keys.UserQueueKey;
+import fr.esgi.other.common.keys.UserQueueKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import net.minidev.json.JSONObject;
 import org.springframework.http.HttpStatus;
