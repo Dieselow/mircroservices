@@ -1,0 +1,25 @@
+server:
+  port: 3003
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: auth-service
+  rabbitmq:
+    host: localhost
+    password: guest
+    port: 15672
+    username: guest
+    exchange: direct-exchange
+    tradingQueue: tradingQueue
+    userQueue: userQueue
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+jwt:
+  ttl_ms: 86400000
+  secret: rdrmGZIDMyiIn+JJ5pJY9KAVfdH2Vh65JbBgK3r0Os+Abl7i9Y9e8Er3IyglADjeMIt0PQUwy+M7uuVk3eI9JA==
