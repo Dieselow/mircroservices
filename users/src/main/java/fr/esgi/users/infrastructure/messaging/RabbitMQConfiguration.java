@@ -21,29 +21,6 @@ public class RabbitMQConfiguration {
     @Value("${spring.rabbitmq.host}")
     private String host;
 
-    @Value("${spring.rabbitmq.userQueue}")
-    private String userQueue;
-    @Value("${spring.rabbitmq.tradingQueue}")
-    private String tradingQueue;
-    @Value("${spring.rabbitmq.exchange}")
-    private String exchange;
-
-
-    @Bean
-    Queue userQueue() {
-        return new Queue(userQueue, false);
-    }
-
-    @Bean
-    Queue tradingQueue() {
-        return new Queue(tradingQueue, false);
-    }
-
-    @Bean
-    DirectExchange exchange() {
-        return new DirectExchange(exchange);
-    }
-
     @Bean
     public ConnectionFactory connectionFactory() {
         CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory(host);
