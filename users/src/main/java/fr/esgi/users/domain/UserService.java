@@ -1,15 +1,29 @@
 package fr.esgi.users.domain;
 
-import fr.esgi.users.infrastructure.messaging.keys.UserQueueKey;
+import keys.UserQueueKey;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
     
     public final UserRepository userRepository;
+    public final PasswordEncoder encoder;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder encoder) {
         this.userRepository = userRepository;
+        this.encoder = encoder;
+    }
+
+    public User addUser(User user){
+
+        User dbUser = userRepository.save(
+                new User(
+                        user.getEmail(),
+                        encoder.encode(user.getPassword())
+                )
+        );
+        return dbUser;
     }
 
     public User updateUserStats(int userId, UserQueueKey action){

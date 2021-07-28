@@ -90,14 +90,35 @@ services:
       - rabbitmq
     build: trading
     ports:
-      - "3001-3004:3001"
+      - "3001:3001"
   users:
     depends_on:
       - kibana
       - rabbitmq
     build: users
     ports:
-      - "3005-3008:3002"
+      - "3002:3002"
+  auth:
+    depends_on:
+      - kibana
+      - rabbitmq
+    build: auth
+    ports:
+      - "3003:3003"
+  gateway:
+    depends_on:
+      - kibana
+      - rabbitmq
+    build: gateway
+    ports:
+      - "8080:8080"
+  eureka:
+    depends_on:
+      - kibana
+      - rabbitmq
+    build: eureka
+    ports:
+      - "8761:8761"
 ##########
 
   postgres:
@@ -116,6 +137,10 @@ services:
       - postgres
     restart: unless-stopped
 
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
 
 networks:
   postgres:

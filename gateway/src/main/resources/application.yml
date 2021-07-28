@@ -1,0 +1,20 @@
+server:
+  port: 3003
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+  redis:
+    host: localhost
+    port: 6379
+
+jwt:
+  secret: rdrmGZIDMyiIn+JJ5pJY9KAVfdH2Vh65JbBgK3r0Os+Abl7i9Y9e8Er3IyglADjeMIt0PQUwy+M7uuVk3eI9JA==

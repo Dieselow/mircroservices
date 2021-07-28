@@ -5,7 +5,7 @@ import fr.esgi.trading.domain.Job;
 import fr.esgi.trading.domain.JobRepository;
 import fr.esgi.trading.domain.JobStatus;
 import fr.esgi.trading.infrastructure.messaging.RabbitMQSender;
-import fr.esgi.trading.infrastructure.messaging.keys.UserQueueKey;
+import keys.UserQueueKey;
 import fr.esgi.trading.infrastructure.web.dto.JobActionDTO;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
-@RestController()
+@RestController("trading")
 public class JobController {
 
     private final JobRepository jobRepo;

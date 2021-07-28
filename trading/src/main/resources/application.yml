@@ -2,6 +2,8 @@ server:
   port: 3001
 
 spring:
+  application:
+    name: trading-service
   cloud:
     consul:
       discovery:
@@ -25,6 +27,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+      spring:
+
 
 management:
   endpoints:
