@@ -8,7 +8,7 @@ import java.util.Date;
 public class CLILogger implements Logger {
 
     @Override
-    public void log(String message){
+    public void log(String message) {
         System.out.println(new Log(message, new Date()));
     }
 }

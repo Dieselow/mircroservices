@@ -12,7 +12,7 @@ public class ESLogger implements Logger {
     private static String apiUrl = "http://localhost:9200/logging/log";
 
     @Override
-    public void log(String message){
+    public void log(String message) {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.postForEntity(apiUrl, new Log(message, new Date()), Log.class);
     }
