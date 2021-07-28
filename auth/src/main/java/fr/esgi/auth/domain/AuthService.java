@@ -31,7 +31,7 @@ public class AuthService {
                 .compact();
     }
 
-    public User findUserByEmail(String email){
+    public User findUserByEmail(String email) {
 
         RestTemplate restTemplate = new RestTemplate();
 

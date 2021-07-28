@@ -41,15 +41,15 @@ public class AuthController {
 
 
     @PostMapping("auth/login")
-    public ResponseEntity<LoginResponseDTO> login(@Valid @RequestBody LoginDTO loginDTO){
+    public ResponseEntity<LoginResponseDTO> login(@Valid @RequestBody LoginDTO loginDTO) {
 
         User user = authService.findUserByEmail(loginDTO.getEmail());
 
-        if(user == null){
+        if (user == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "user doesn't exist");
         }
 
-        if(!encoder.matches(loginDTO.getPassword(), user.getPassword())){
+        if (!encoder.matches(loginDTO.getPassword(), user.getPassword())) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "wrong password");
         }
 
@@ -62,7 +62,7 @@ public class AuthController {
     }
 
     @PostMapping("auth/register")
-    public ResponseEntity<Object> register(@Valid @RequestBody LoginDTO body){
+    public ResponseEntity<Object> register(@Valid @RequestBody LoginDTO body) {
 
         JSONObject json = new JSONObject();
         json.appendField("email", body.getEmail());
@@ -75,7 +75,7 @@ public class AuthController {
     }
 
     @PutMapping()
-    public ResponseEntity<Object> test(){
+    public ResponseEntity<Object> test() {
         return new ResponseEntity<>("hello", HttpStatus.CREATED);
     }
 }

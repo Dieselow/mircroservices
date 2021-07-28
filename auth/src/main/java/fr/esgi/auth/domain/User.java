@@ -24,5 +24,6 @@ public class User {
         this.finishedJobCounter = 0;
     }
 
-    public User(){}
+    public User() {
+    }
 }

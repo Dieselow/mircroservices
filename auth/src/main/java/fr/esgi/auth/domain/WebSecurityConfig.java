@@ -18,13 +18,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .cors()
-                    .and()
+                .and()
                 .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                    .and()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/**").permitAll();
+                .antMatchers("/**").permitAll();
     }
 
     @Bean

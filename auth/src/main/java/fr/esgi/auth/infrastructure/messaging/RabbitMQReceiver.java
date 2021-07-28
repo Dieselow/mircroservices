@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RabbitMQReceiver implements RabbitListenerConfigurer {
-    private static final Logger logger =  LoggerFactory.getLogger(RabbitMQReceiver.class);
+    private static final Logger logger = LoggerFactory.getLogger(RabbitMQReceiver.class);
 
 
     @Override
