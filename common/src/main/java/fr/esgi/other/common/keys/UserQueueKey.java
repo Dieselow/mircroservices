@@ -1,4 +1,4 @@
-package keys;
+package fr.esgi.other.common.keys;
 
 public enum UserQueueKey {
     INCR_FINISHED,

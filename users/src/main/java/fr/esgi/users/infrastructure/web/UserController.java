@@ -1,7 +1,6 @@
 package fr.esgi.users.infrastructure.web;
 
 import fr.esgi.logger.ESLogger;
-import fr.esgi.logger.Logger;
 import fr.esgi.users.domain.User;
 import fr.esgi.users.domain.UserService;
 import org.springframework.http.HttpStatus;

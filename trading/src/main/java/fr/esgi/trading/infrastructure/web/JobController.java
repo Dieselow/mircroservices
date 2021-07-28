@@ -5,7 +5,7 @@ import fr.esgi.trading.domain.Job;
 import fr.esgi.trading.domain.JobRepository;
 import fr.esgi.trading.domain.JobStatus;
 import fr.esgi.trading.infrastructure.messaging.RabbitMQSender;
-import keys.UserQueueKey;
+import fr.esgi.other.common.keys.UserQueueKey;
 import fr.esgi.trading.infrastructure.web.dto.JobActionDTO;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;

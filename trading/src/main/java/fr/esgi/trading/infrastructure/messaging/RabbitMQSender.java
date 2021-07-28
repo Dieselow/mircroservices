@@ -1,6 +1,6 @@
 package fr.esgi.trading.infrastructure.messaging;
 
-import keys.UserQueueKey;
+import fr.esgi.common.keys.UserQueueKey;
 import net.minidev.json.JSONObject;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;

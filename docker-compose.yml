@@ -95,7 +95,9 @@ services:
     depends_on:
       - kibana
       - rabbitmq
-    build: users
+    build:
+      context: ./
+      dockerfile: ./users/Dockerfile
     ports:
       - "3002:3002"
   auth:

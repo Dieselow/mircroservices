@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import fr.esgi.users.domain.User;
 import fr.esgi.users.domain.UserService;
-import keys.UserQueueKey;
+import fr.esgi.other.common.keys.UserQueueKey;
 import net.minidev.json.JSONObject;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.*;

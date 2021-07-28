@@ -1,4 +1,4 @@
-package fr.esgi.common;
+package fr.esgi.other.common;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
