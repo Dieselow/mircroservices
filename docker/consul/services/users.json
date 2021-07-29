@@ -1,0 +1,9 @@
+{
+  "service": {
+    "name": "users",
+    "tags": [
+      "api"
+    ],
+    "port": 3002
+  }
+}

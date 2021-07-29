@@ -1,0 +1,42 @@
+server:
+  port: 3001
+
+spring:
+  application:
+    name: trading-service
+  cloud:
+    consul:
+      discovery:
+        instanceId: ${spring.application.name}:${server.port}:${random.value}
+        healthCheckPath: ${management.server.servlet.context-path}/health
+        healthCheckInterval: 15s
+  rabbitmq:
+    host: localhost
+    password: guest
+    port: 15672
+    username: guest
+    exchange: direct-exchange
+    tradingQueue: tradingQueue
+    userQueue: userQueue
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    initialization-mode: always
+    platform: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+      spring:
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging.level:
+  org.springframework.cloud:
+    consul: DEBUG

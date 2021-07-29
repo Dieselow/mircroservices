@@ -1,12 +1,24 @@
 version: '3'
 
 services:
+  consul:
+    image: consul:latest
+    volumes:
+      - ./docker/consul/services:/services
+    ports:
+      - 8500:8500
+      - 8600:8600
+    command: "agent -server -bootstrap -ui -client=0.0.0.0 -config-dir /services/"
+
+
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
     environment:
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    depends_on:
+      - kibana
     ulimits:
       memlock:
         soft: -1
@@ -83,9 +95,32 @@ services:
     depends_on:
       - kibana
       - rabbitmq
-    build: users
+    build:
+      context: ./
+      dockerfile: ./users/Dockerfile
     ports:
       - "3002:3002"
+  auth:
+    depends_on:
+      - kibana
+      - rabbitmq
+    build: auth
+    ports:
+      - "3003:3003"
+  gateway:
+    depends_on:
+      - kibana
+      - rabbitmq
+    build: gateway
+    ports:
+      - "8080:8080"
+  eureka:
+    depends_on:
+      - kibana
+      - rabbitmq
+    build: eureka
+    ports:
+      - "8761:8761"
 ##########
 
   postgres:
@@ -104,6 +139,10 @@ services:
       - postgres
     restart: unless-stopped
 
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
 
 networks:
   postgres:
