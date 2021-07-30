@@ -1,13 +1,13 @@
 _type: export
 __export_format: 4
-__export_date: 2021-07-28T12:24:07.159Z
+__export_date: 2021-07-30T09:11:05.463Z
 __export_source: insomnia.desktop.app:v2020.5.2
 resources:
   - _id: req_beda6b4eb8844c4088db6889b58e7793
     parentId: fld_2a1fa91ecbb14dbaacbb83e180ffa2a4
-    modified: 1627173916900
+    modified: 1627574932677
     created: 1627165777515
-    url: "{{ _.gateway }}/trading/2"
+    url: "{{ _.gateway }}/trading/5"
     name: by id
     description: ""
     method: GET
@@ -54,11 +54,34 @@ resources:
     description: ""
     scope: null
     _type: workspace
+  - _id: req_1bb5fe43a9db4404a4489ad25e271426
+    parentId: fld_2a1fa91ecbb14dbaacbb83e180ffa2a4
+    modified: 1627572437061
+    created: 1627572434782
+    url: "{{ _.gateway }}/trading"
+    name: all
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1626377181891.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_43ad83f6b4f24d99865b746a14e6a609
     parentId: fld_2a1fa91ecbb14dbaacbb83e180ffa2a4
-    modified: 1627173904715
+    modified: 1627574897383
     created: 1627165777510
-    url: "{{ _.gateway }}/"
+    url: "{{ _.gateway }}/trading"
     name: job
     description: ""
     method: POST
@@ -66,7 +89,7 @@ resources:
       mimeType: application/json
       text: |-
         {
-        	"title": "Tondre mon jardin",
+        	"title": "aide pendant ma soutenance",
         	"description": "800m² de pelouse",
         	"creator": 1
         }
@@ -89,9 +112,9 @@ resources:
     _type: request
   - _id: req_7b731da05a6a426d86d1c9c4fbe0a26d
     parentId: fld_2a1fa91ecbb14dbaacbb83e180ffa2a4
-    modified: 1627173894034
+    modified: 1627574924807
     created: 1627165777512
-    url: "{{ _.gateway }}/2/accept"
+    url: "{{ _.gateway }}/trading/5/accept"
     name: accept job
     description: ""
     method: PUT
@@ -120,9 +143,9 @@ resources:
     _type: request
   - _id: req_6663dec29d924472ac05f485c8a508cc
     parentId: fld_2a1fa91ecbb14dbaacbb83e180ffa2a4
-    modified: 1627173897872
+    modified: 1627574960720
     created: 1627165777514
-    url: "{{ _.gateway }}/2/finish"
+    url: "{{ _.gateway }}/trading/5/finish"
     name: finish job
     description: ""
     method: PUT
@@ -519,6 +542,27 @@ resources:
     environmentPropertyOrder: null
     metaSortKey: -1626466506096.5
     _type: request_group
+  - _id: req_b9047ecb3b64410394e7c97867bf9b87
+    parentId: fld_448b250e21794752805fd25436ec6f26
+    modified: 1627572512277
+    created: 1627572510375
+    url: "{{ _['trading-service'] }}/trading"
+    name: all
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1626500011136.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_9d4fc114b67947eb95d7c6e4837817d2
     parentId: fld_448b250e21794752805fd25436ec6f26
     modified: 1627166494720
@@ -953,7 +997,7 @@ resources:
     _type: api_spec
   - _id: env_40071ca9d1cd4661a8641a5fb84eb2b9
     parentId: env_73879891a3c5eff83eff4adf94f0df8643a7ee3c
-    modified: 1627173654825
+    modified: 1627574837254
     created: 1625846887892
     name: microservice env
     data:
@@ -962,7 +1006,7 @@ resources:
       user-service: http://localhost:3002
       auth-service: http://localhost:3003
       elastisearch: http://localhost:9200
-      token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXhpbWUuZGhhcmJvdWxsZUBnbWFpbC5jb20iLCJpZCI6OCwiaWF0IjoxNjI3MTcxNTQzLCJleHAiOjE2MjcyNTc5NDN9.pjEi1thSfZcKGqYo9Mo3SYeYLF4wJYt8-iqMIKiwloagH0vgfKVaoW9PpQArz0JX0f6WeCSsIWr7D734y_rOGw
+      token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXhpbWUuZGhhcmJvdWxsZUBnbWFpbC5jb20iLCJpZCI6OCwiaWF0IjoxNjI3NTc0ODIxLCJleHAiOjE2Mjc2NjEyMjF9.d-a-JoozTMGzec7pVr6Czdhp7YoZ0b64hyT5CEX3qos53Nj9OHF4C-qNm4K3OVCuXh4SBTARf4gtYbCN6AYX4g
     dataPropertyOrder:
       "&":
         - gateway
