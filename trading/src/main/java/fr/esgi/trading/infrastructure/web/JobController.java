@@ -5,7 +5,7 @@ import fr.esgi.trading.domain.Job;
 import fr.esgi.trading.domain.JobRepository;
 import fr.esgi.trading.domain.JobStatus;
 import fr.esgi.trading.infrastructure.messaging.RabbitMQSender;
-import fr.esgi.other.common.keys.UserQueueKey;
+import fr.esgi.common.keys.UserQueueKey;
 import fr.esgi.trading.infrastructure.web.dto.JobActionDTO;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +14,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
-@RestController("trading")
+@RestController()
 public class JobController {
 
     private final JobRepository jobRepo;
@@ -30,7 +31,7 @@ public class JobController {
         this.logger = logger;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("trading/{id}")
     public ResponseEntity<Job> get(@PathVariable int id){
         Optional<Job> jobDB = jobRepo.findById(id);
 
@@ -41,7 +42,13 @@ public class JobController {
         return new ResponseEntity<>(jobDB.get(), HttpStatus.OK);
     }
 
-    @PostMapping()
+    @GetMapping("trading")
+    public ResponseEntity<List<Job>> getAll(){
+        List<Job> jobs = jobRepo.findAll();
+        return new ResponseEntity<>(jobs, HttpStatus.OK);
+    }
+
+    @PostMapping("trading")
     public ResponseEntity<Job> createJob(@RequestBody Job job) {
 
         job.setStatus(JobStatus.OPEN);
@@ -58,7 +65,7 @@ public class JobController {
         return new ResponseEntity<>(postDB, HttpStatus.CREATED);
     }
 
-    @PutMapping("{id}/accept")
+    @PutMapping("trading/{id}/accept")
     public ResponseEntity<Job> acceptJob(@PathVariable int id, @RequestBody JobActionDTO dto){
 
         Optional<Job> jobDB = jobRepo.findById(id);
@@ -67,6 +74,10 @@ public class JobController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "couldn't find job");
         }
         Job job = jobDB.get();
+
+        if(job.getStatus().equals(JobStatus.FINISHED)){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "job already finished");
+        }
 
         job.setStatus(JobStatus.STARTED);
         job.setWorker(dto.getUserID());
@@ -80,7 +91,7 @@ public class JobController {
         return new ResponseEntity<>(updatedJobDB, HttpStatus.OK);
     }
 
-    @PutMapping("{id}/finish")
+    @PutMapping("trading/{id}/finish")
     public ResponseEntity<Job> finishJob(@PathVariable int id, @RequestBody JobActionDTO dto){
 
         Optional<Job> jobDB = jobRepo.findById(id);
@@ -93,6 +104,10 @@ public class JobController {
 
         if(dto.getUserID() != job.getWorker()){
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "you can't finish a job you havn't started");
+        }
+
+        if(job.getStatus().equals(JobStatus.FINISHED)){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "job already finished");
         }
 
         job.setStatus(JobStatus.FINISHED);

@@ -1,6 +1,6 @@
 package fr.esgi.users.domain;
 
-import fr.esgi.other.common.keys.UserQueueKey;
+import fr.esgi.common.keys.UserQueueKey;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

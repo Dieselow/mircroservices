@@ -3,12 +3,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>microservices</artifactId>
-        <groupId>fr.esgi</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.5</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
+    <groupId>fr.esgi</groupId>
     <artifactId>trading</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <name>trading</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>
@@ -82,13 +85,15 @@
         </dependency>
         <dependency>
             <groupId>fr.esgi</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>logger</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>fr.esgi</groupId>
-            <artifactId>logger</artifactId>
+            <artifactId>common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
