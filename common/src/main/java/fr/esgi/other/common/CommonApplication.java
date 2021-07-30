@@ -1,4 +1,4 @@
-package fr.esgi.common;
+package fr.esgi.other.common;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
